@@ -2,35 +2,27 @@ let interviewList = [];
 let rejectedList = [];
 let currentStatus = "All";
 
-// header item get
 const totalJobsCount = document.getElementById("total-jobs");
 const totalInterviewCount = document.getElementById("total-interview");
 const totalRejectedCount = document.getElementById("total-rejected");
 const availableTotalJobs = document.getElementById("available-total-jobs");
 
-// all, interviw, rejected button get
 const allJobsBtn = document.getElementById("all-jobs-btn");
 const interviewJobsbtn = document.getElementById("interview-jobs-btn");
 const rejectedJobsbtn = document.getElementById("rejected-jobs-btn");
 
-// Card section get
 const totalJobsSection = document.getElementById("allCards");
 const jobsCards = document.querySelector(".allCard");
-
-// main section get (delegation using main tag)
 const mainContainer = document.querySelector("main");
 
-// filtaring card section
 const filteringCardsSection = document.getElementById("filteringCards");
 const filteringCard = document.querySelector(".filteringCard");
 
-// Header item count
 function totalCalculate(count) {
   totalJobsCount.innerText = jobsCards.children.length;
   totalInterviewCount.innerText = interviewList.length;
   totalRejectedCount.innerText = rejectedList.length;
 
-  // currentStatus count
   if (currentStatus == "interview-jobs-btn") {
     availableTotalJobs.innerText = `${interviewList.length} of ${jobsCards.children.length} jobs`;
   } else if (currentStatus == "rejected-jobs-btn") {
@@ -52,11 +44,9 @@ function toggleEvent(id) {
   interviewJobsbtn.classList.remove("bg-[#3B82F6]");
   rejectedJobsbtn.classList.remove("bg-[#3B82F6]");
 
-  // clicked item id get
   const selectId = document.getElementById(id);
   currentStatus = id;
 
-  // remove bg and add new bg
   selectId.classList.remove("bg-white");
   selectId.classList.add("bg-[#3B82F6]");
 
@@ -78,12 +68,10 @@ function toggleEvent(id) {
 }
 
 mainContainer.addEventListener("click", function (event) {
-  // delete button condition
   if (event.target.closest(".delete-btn")) {
     const cardDelete = event.target.closest(".flex.justify-between");
     const companyName = cardDelete.querySelector(".companyName").innerText;
 
-    // interviewList and rejectedList theke remove
     interviewList = interviewList.filter(
       (item) => item.companyName !== companyName,
     );
@@ -91,10 +79,8 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != companyName,
     );
 
-    // card delete for dom
     cardDelete.remove();
 
-    // filtered tab re-render
     if (currentStatus == "interview-jobs-btn") {
       interviewCardsRendaring();
     } else if (currentStatus == "rejected-jobs-btn") {
@@ -105,10 +91,8 @@ mainContainer.addEventListener("click", function (event) {
   }
 
   if (event.target.classList.contains("interview-btn")) {
-    // interview clicked kra card div
     const parentNode = event.target.parentNode.parentNode;
 
-    // interview clicked kra card gr all information
     const companyName = parentNode.querySelector(".companyName").innerText;
     const position = parentNode.querySelector(".position").innerText;
     const location = parentNode.querySelector(".location").innerText;
@@ -120,7 +104,7 @@ mainContainer.addEventListener("click", function (event) {
 
     // status text color change
     const statusChange = parentNode.querySelector(".status");
-    statusChange.classList.remove("text-red-500"); // আগের color সরাও
+    statusChange.classList.remove("text-red-500");
     statusChange.classList.add("text-green-500");
 
     const cardInfo = {
@@ -145,18 +129,13 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != cardInfo.companyName,
     );
 
-    // Rejected button click করলে
     if (currentStatus == "rejected-jobs-btn") {
-      // ✓ rejected tab এ আছি
-      rejectedCardsRendaring(); // ✓ rejected re-render করো
+      rejectedCardsRendaring();
     }
-
     totalCalculate();
   } else if (event.target.classList.contains("rejected-btn")) {
-    // interview clicked kra card div
     const parentNode = event.target.parentNode.parentNode;
 
-    // interview clicked kra card gr all information
     const companyName = parentNode.querySelector(".companyName").innerText;
     const position = parentNode.querySelector(".position").innerText;
     const location = parentNode.querySelector(".location").innerText;
@@ -167,7 +146,7 @@ mainContainer.addEventListener("click", function (event) {
 
     // status text color change
     const statusChange = parentNode.querySelector(".status");
-    statusChange.classList.remove("text-green-500"); // আগের color সরাও
+    statusChange.classList.remove("text-green-500");
     statusChange.classList.add("text-red-500");
 
     const cardInfo = {
@@ -192,10 +171,8 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != cardInfo.companyName,
     );
 
-    // Interview button click করলে
     if (currentStatus == "interview-jobs-btn") {
-      // ✓ interview tab এ আছি
-      interviewCardsRendaring(); // ✓ interview re-render করো
+      interviewCardsRendaring();
     }
 
     totalCalculate();
@@ -204,10 +181,8 @@ mainContainer.addEventListener("click", function (event) {
 
 function interviewCardsRendaring() {
   if (interviewList.length > 0) {
-    // make the filterSection empty every time
     filteringCard.innerHTML = "";
 
-    // crating innerHtml
     for (let interview of interviewList) {
       let div = document.createElement("div");
       div.className = "flex justify-between bg-white p-6 rounded-lg";
@@ -266,10 +241,8 @@ function interviewCardsRendaring() {
 
 function rejectedCardsRendaring() {
   if (rejectedList.length > 0) {
-    // make the filterSection empty every time
     filteringCard.innerHTML = "";
 
-    // crating innerHtml
     for (let rejected of rejectedList) {
       let div = document.createElement("div");
       div.className = "flex justify-between bg-white p-6 rounded-lg";
