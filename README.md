@@ -1,4 +1,4 @@
-(1)==> Difference: getElementById vs getElementsByClassName vs querySelector / querySelectorAll?
+###(1)==> Difference: getElementById vs getElementsByClassName vs querySelector / querySelectorAll?
 
 => ANSWER
 
@@ -25,11 +25,10 @@ Selects all matching elements
 const buttons = document.querySelectorAll(".btn");
 can use forEach().
 
-(2)==> How to create & insert new element in DOM
+###(2)==> How to create & insert new element in DOM
 Step-by-step?
 
-=> ANSWER
-To add something new to the page using DOM. There are three-step process:
+=>To add something new to the page using DOM. There are three-step process:
 
 // 1. Create the element
 const newDiv = document.createElement('div');
@@ -42,10 +41,9 @@ newDiv.className = "greeting";
 const container = document.querySelector('#container');
 container.appendChild(newDiv);
 
-(3)==> What is Event Bubbling?
+###(3)==> What is Event Bubbling?
 
-=> ANSWER
-Event Bubbling describes how an event moves through the DOM tree. When click an element (like a button), the click event doesn't just stay there. It "bubbles up" to its parent, then the grandparent, all the way up to the window.
+=>Event Bubbling describes how an event moves through the DOM tree. When click an element (like a button), the click event doesn't just stay there. It "bubbles up" to its parent, then the grandparent, all the way up to the window.
 
 How it works: If i click "span" inside a "div", the "span"'s click handler fires first, then the "div"'s handler fires, and so on.
 
@@ -59,10 +57,9 @@ console.log("Button clicked");
 
 <!-- ekhane parent and chaild id die select kora hoyeche -->
 
-(4)==> What is Event Delegation? Why useful?
+###(4)==> What is Event Delegation? Why useful?
 
-=> ANSWER
-==> Add event to parent instead of many children
+=>Add event to parent instead of many children
 
 Example =>
 
@@ -93,10 +90,9 @@ faster
 works for dynamic elements
 cleaner code
 
-(5)==> What is the difference between preventDefault() and stopPropagation() methods?
+###(5)==> What is the difference between preventDefault() and stopPropagation() methods?
 
-=> ANSWER
-They do very different things:
+=>They do very different things:
 
 <b>preventDefault()</b> stops the browser's default behavior.
 
